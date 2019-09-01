@@ -8,6 +8,20 @@ class Widget;
 }
 
 #include "QtRoServer.h"
+#include <QThread>
+
+class ServerWorkThread : public QThread
+{
+public:
+    ServerWorkThread(QtRoServer* pServer) { m_pServer = pServer; }
+    void run() override
+    {
+        ;
+    }
+
+private:
+    QtRoServer* m_pServer;
+};
 
 class Widget : public QWidget
 {
@@ -20,6 +34,7 @@ public:
 private:
     Ui::Widget *ui;
     QtRoServer m_server;
+
 
 };
 

@@ -7,6 +7,7 @@ Widget::Widget(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setWindowTitle("Client");
+    m_pWorkThread = new ClientWorkThread(&m_client);
 }
 
 Widget::~Widget()
@@ -16,5 +17,5 @@ Widget::~Widget()
 
 void Widget::on_pushButton_clicked()
 {
-    m_client.sendMsgNotify("123");
+    m_pWorkThread->start();
 }
