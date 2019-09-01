@@ -20,7 +20,7 @@ public:
 private:
     Ui::Widget *ui;
     QtRoServer m_server;
-    QRemoteObjectHost* m_pSrcNode;
+
 };
 
 #endif // WIDGET_H

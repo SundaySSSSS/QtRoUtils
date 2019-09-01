@@ -3,7 +3,15 @@
 QtRoServer::QtRoServer(QObject* parent)
     : CommInterfaceSource(parent)
 {
-    //connect(this, SIGNAL(sig_sendMsgNotify(QString)), this, SLOT(slot_serverReceiveNotifyMsg(QString)));
+    m_pSrcNode = new QRemoteObjectHost(QUrl(QStringLiteral("local:switch")));
+    m_pSrcNode->enableRemoting(this);
+}
+
+QtRoServer::~QtRoServer()
+{
+    m_pSrcNode->disableRemoting(this);
+    delete m_pSrcNode;
+    m_pSrcNode = nullptr;
 }
 
 void QtRoServer::slot_receiveMsgNotify(QString strMsgNotify)

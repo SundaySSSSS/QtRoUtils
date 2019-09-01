@@ -10,6 +10,7 @@ class QtRoClient : public QObject
     Q_OBJECT
 public:
     QtRoClient(QObject* parent = nullptr);
+    virtual ~QtRoClient();
     void sendMsgNotify(QString strMsgNotify);
 
 private:

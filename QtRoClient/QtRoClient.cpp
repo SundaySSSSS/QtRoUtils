@@ -8,6 +8,11 @@ QtRoClient::QtRoClient(QObject* parent)
     connect(this, SIGNAL(sig_sendMsgNotifyFromClient(QString)), m_pReplica, SLOT(slot_receiveMsgNotify(QString)));
 }
 
+QtRoClient::~QtRoClient()
+{
+    ;
+}
+
 void QtRoClient::sendMsgNotify(QString strMsgNotify)
 {
     emit sig_sendMsgNotifyFromClient(strMsgNotify);
