@@ -1,0 +1,6 @@
+class CommInterface
+{
+    PROP(QByteArray msg READWRITE);
+    SLOT(slot_receiveMsgNotify(QString strMsgNotify));
+    SIGNAL(sig_sendMsgNotify(QString strMsgNotify));
+};
