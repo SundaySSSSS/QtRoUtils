@@ -1,6 +1,11 @@
 class CommInterface
 {
-    PROP(QByteArray msg READWRITE);
-    SLOT(slot_receiveMsgNotify(QString strMsgNotify));
-    SIGNAL(sig_sendMsgNotify(QString strMsgNotify));
+    //本QtRo通信支持两种模式, 一种为少量文本的传输
+    //一种为大量二进制数据传输
+
+    //二进制数据传输
+    PROP(QByteArray QtRoData READWRITE);
+    //文本传输
+    SLOT(slot_receiveMsg(QString strMsg));
+    SIGNAL(sig_sendMsg(QString strMsg));
 };

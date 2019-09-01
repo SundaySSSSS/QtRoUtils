@@ -14,7 +14,7 @@ QtRoServer::~QtRoServer()
     m_pSrcNode = nullptr;
 }
 
-void QtRoServer::slot_receiveMsgNotify(QString strMsgNotify)
+void QtRoServer::slot_receiveMsg(QString strMsg)
 {
-    qDebug() << strMsgNotify;
+    emit sig_receiveMsgFromClient(strMsg);
 }

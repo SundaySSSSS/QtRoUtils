@@ -9,6 +9,7 @@ class Widget;
 
 #include "QtRoClient.h"
 #include <QThread>
+#include <QDebug>
 
 class ClientWorkThread : public QThread
 {
@@ -23,11 +24,13 @@ public:
         {
             return;
         }
+        int iCount = 0;
         while (1)
         {
             qDebug() << "send Msg to server";
-            m_pClient->sendMsgNotify("123");
+            m_pClient->sendMsg(QString::number(iCount));
             sleep(1);
+            ++iCount;
         }
     }
 private:
@@ -49,6 +52,9 @@ private:
     Ui::Widget *ui;
     QtRoClient m_client;
     ClientWorkThread* m_pWorkThread;
+
+private slots:
+    void slot_receiveMsgFromServer(QString strMsg);
 };
 
 #endif // WIDGET_H

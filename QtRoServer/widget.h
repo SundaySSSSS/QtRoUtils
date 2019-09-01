@@ -35,7 +35,8 @@ private:
     Ui::Widget *ui;
     QtRoServer m_server;
 
-
+private slots:
+    void slot_receiveMsg(QString strMsg);
 };
 
 #endif // WIDGET_H

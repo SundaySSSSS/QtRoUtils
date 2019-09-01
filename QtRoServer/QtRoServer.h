@@ -6,17 +6,27 @@
 class QtRoServer : public CommInterfaceSource
 {
     Q_OBJECT
+
+    /* 对外接口 */
 public:
     QtRoServer(QObject* parent = nullptr);
     virtual ~QtRoServer();
 
-    QByteArray msg() const { return m_baMsg; }
-    void setMsg(QByteArray msg) { m_baMsg = msg; }
+    QByteArray QtRoData() const { return m_baQtRoData; }
+    void setQtRoData(QByteArray data) { m_baQtRoData = data; }
+    void sendMsg(QString strMsg) { emit sig_sendMsg(strMsg); }
+
+Q_SIGNALS:
+    void sig_receiveMsgFromClient(QString strMsg);
+    /* 对外接口结束 */
+
+Q_SIGNALS:
+    //void sig_sendMsgFromServer(QString strMsg);
 
 private Q_SLOTS:
-    void slot_receiveMsgNotify(QString strMsgNotify);
+    void slot_receiveMsg(QString strMsg);
 private:
-    QByteArray m_baMsg;
+    QByteArray m_baQtRoData;
     QRemoteObjectHost* m_pSrcNode;
 };
 

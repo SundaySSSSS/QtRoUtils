@@ -8,6 +8,8 @@ Widget::Widget(QWidget *parent) :
     ui->setupUi(this);
     this->setWindowTitle("Client");
     m_pWorkThread = new ClientWorkThread(&m_client);
+    connect(&m_client, SIGNAL(sig_receiveMsgFromServer(QString)),
+            this, SLOT(slot_receiveMsgFromServer(QString)));
 }
 
 Widget::~Widget()
@@ -18,4 +20,9 @@ Widget::~Widget()
 void Widget::on_pushButton_clicked()
 {
     m_pWorkThread->start();
+}
+
+void Widget::slot_receiveMsgFromServer(QString strMsg)
+{
+    qDebug() << "receive from server" << strMsg;
 }
